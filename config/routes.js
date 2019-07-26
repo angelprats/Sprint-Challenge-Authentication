@@ -2,6 +2,7 @@ const axios = require("axios");
 const Users = require("../users/userModel.js");
 const { authenticate } = require("../auth/authenticate");
 const jwtSecret = process.env.JWT_SECRET || "speak friend and enter";
+const secrets = require('../auth/secrets');
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
