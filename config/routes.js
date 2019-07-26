@@ -1,9 +1,8 @@
 const axios = require("axios");
 const Users = require("../users/userModel.js");
 const { authenticate } = require("../auth/authenticate");
-const jwtSecret = process.env.JWT_SECRET || "speak friend and enter";
-const secrets = require('../auth/secrets');
 
+const secrets = require('../auth/secrets');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
@@ -21,7 +20,7 @@ function register(req, res) {
 
   Users.add(user)
     .then(saved => {
-      res.status(201).json(saved);
+      res.status(201).json(saved) 
     })
     .catch(error => {
       res.status(500).json(error);
@@ -74,5 +73,5 @@ function generateToken(user) {
   const jwtOptions = {
     expiresIn: '1d',
   };
-  return jwt.sign(jwtPayload, jwtSecret, jwtOptions);
+  return jwt.sign(jwtPayload, secrets.jwtKey,  jwtOptions);
 }
